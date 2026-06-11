@@ -1,0 +1,48 @@
+const games = [
+  {
+    name: "Terraria",
+    url: "https://degloved.net/gms/Terraria/"
+  }
+];
+
+const container = document.createElement("div");
+
+games.forEach(game => {
+  const button = document.createElement("button");
+  button.textContent = game.name;
+
+  button.onclick = () => {
+    const win = window.open("about:blank", "_blank");
+
+    win.document.write(`
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>${game.name}</title>
+        <style>
+          html, body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+          }
+          iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+          }
+        </style>
+      </head>
+      <body>
+        <iframe src="${game.url}"></iframe>
+      </body>
+      </html>
+    `);
+
+    win.document.close();
+  };
+
+  container.appendChild(button);
+});
+
+document.body.appendChild(container);
